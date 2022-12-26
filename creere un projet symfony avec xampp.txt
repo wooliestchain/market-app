@@ -1,0 +1,1 @@
+C:\xampp\htdocs>composer create-project symfony/website-skeleton example-app

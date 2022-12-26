@@ -1,0 +1,4 @@
+ symfony console doctrine:schema:update   --force
+
+
+Effectuer la mise a jour de la base de données, la commande " symfony console doctrine:migration:migrate" n'effectue pas une mise à jour mais plutot une creation de la base de données.
