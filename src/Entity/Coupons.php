@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CouponsRepository::class)]
 class Coupons
 {
-
+/* coupons*/
     use CreatedAtTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
