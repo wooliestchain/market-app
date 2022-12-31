@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de {{ products.name }}{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1>{{ products.name }}</h1>
+            </div>
+            <div class="col-6">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for iteration in 1..products.images|length %}
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first ) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-inner">
+                        {% for image in products.images %}
+                            <div class="carousel-item {{ (loop.first ) ? 'active' : '' }}">
+                                <img src="{{ asset('assets/uploads/') ~ image.name }}" class="d-block w-100" alt="{{ products.name }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-6">
+                <p>{{ products.description }}</p>
+                <p>Catégorie: {{ products.relation.name }}</p>
+                <p>Prix : {{ products.price /100 }} DT</p>
+                {% if products.stock >0 %}
+                    <i class="text-success">Produit en stock</i>
+                {% else %}
+                    <p class="text-danger">Rupture de stock</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+{% endblock %}
