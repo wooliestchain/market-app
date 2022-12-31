@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 26 déc. 2022 à 23:17
+-- Généré le : sam. 31 déc. 2022 à 22:42
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -31,8 +31,23 @@ CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
-  `slug` varchar(255) NOT NULL
+  `slug` varchar(255) NOT NULL,
+  `category_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `categories`
+--
+
+INSERT INTO `categories` (`id`, `parent_id`, `name`, `slug`, `category_order`) VALUES
+(52, NULL, 'Informatique', 'informatique', 1),
+(53, 52, 'Ordinateur portables', 'ordinateur-portables', 3),
+(54, 52, 'Ecrans', 'ecrans', 2),
+(55, 52, 'Souris', 'souris', 4),
+(56, NULL, 'Jeux Vidéos', 'jeux-videos', 5),
+(57, 56, ' Xbox', 'xbox', 8),
+(58, 56, 'Playstation', 'playstation', 7),
+(59, 56, 'Nintendo', 'nintendo', 6);
 
 -- --------------------------------------------------------
 
@@ -94,6 +109,112 @@ CREATE TABLE `images` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `images`
+--
+
+INSERT INTO `images` (`id`, `products_id`, `name`) VALUES
+(1, 12, ''),
+(2, 16, ''),
+(3, 15, ''),
+(4, 16, ''),
+(5, 19, ''),
+(6, 17, 'ecran01.jpg'),
+(7, 17, 'ecran02.jpg'),
+(8, 17, 'ecran03.jpg'),
+(9, 21, 'xbox01.jpg'),
+(10, 21, 'xbox02.jpg'),
+(11, 21, 'xbox03.jpg'),
+(12, 22, 'msi01.jpg'),
+(13, 22, 'msi02.jpg'),
+(14, 22, 'msi03.jpg'),
+(15, 17, ''),
+(16, 20, ''),
+(17, 11, ''),
+(18, 20, ''),
+(19, 13, ''),
+(20, 11, ''),
+(21, 20, ''),
+(22, 12, ''),
+(23, 20, ''),
+(24, 18, ''),
+(25, 14, ''),
+(26, 11, ''),
+(27, 18, ''),
+(28, 17, ''),
+(29, 17, ''),
+(30, 13, ''),
+(31, 18, ''),
+(32, 19, ''),
+(33, 16, ''),
+(34, 14, ''),
+(35, 19, ''),
+(36, 19, ''),
+(37, 12, ''),
+(38, 20, ''),
+(39, 18, ''),
+(40, 20, ''),
+(41, 19, ''),
+(42, 14, ''),
+(43, 15, ''),
+(44, 13, ''),
+(45, 12, ''),
+(46, 13, ''),
+(47, 17, ''),
+(48, 19, ''),
+(49, 16, ''),
+(50, 12, ''),
+(51, 13, ''),
+(52, 11, ''),
+(53, 19, ''),
+(54, 12, ''),
+(55, 14, ''),
+(56, 13, ''),
+(57, 14, ''),
+(58, 11, ''),
+(59, 14, ''),
+(60, 20, ''),
+(61, 11, ''),
+(62, 15, ''),
+(63, 15, ''),
+(64, 14, ''),
+(65, 20, ''),
+(66, 19, ''),
+(67, 16, ''),
+(68, 13, ''),
+(69, 14, ''),
+(70, 20, ''),
+(71, 15, ''),
+(72, 11, ''),
+(73, 19, ''),
+(74, 12, ''),
+(75, 12, ''),
+(76, 16, ''),
+(77, 14, ''),
+(78, 15, ''),
+(79, 14, ''),
+(80, 13, ''),
+(81, 20, ''),
+(82, 11, ''),
+(83, 19, ''),
+(84, 17, ''),
+(85, 11, ''),
+(86, 18, ''),
+(87, 11, ''),
+(88, 16, ''),
+(89, 14, ''),
+(90, 11, ''),
+(91, 20, ''),
+(92, 11, ''),
+(93, 20, ''),
+(94, 20, ''),
+(95, 11, ''),
+(96, 20, ''),
+(97, 12, ''),
+(98, 13, ''),
+(99, 12, ''),
+(100, 18, '');
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +230,13 @@ CREATE TABLE `messenger_messages` (
   `available_at` datetime NOT NULL,
   `delivered_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `messenger_messages`
+--
+
+INSERT INTO `messenger_messages` (`id`, `body`, `headers`, `queue_name`, `created_at`, `available_at`, `delivered_at`) VALUES
+(1, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:39:\\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\\":4:{i:0;s:25:\\\"emails/register.html.twig\\\";i:1;N;i:2;a:1:{s:4:\\\"user\\\";O:16:\\\"App\\\\Entity\\\\Users\\\":12:{s:20:\\\"\\0App\\\\Entity\\\\Users\\0id\\\";i:23;s:23:\\\"\\0App\\\\Entity\\\\Users\\0email\\\";s:14:\\\"test@test.test\\\";s:23:\\\"\\0App\\\\Entity\\\\Users\\0roles\\\";a:0:{}s:26:\\\"\\0App\\\\Entity\\\\Users\\0password\\\";s:60:\\\"$2y$13$MCOn.Y9JyiG6J1M40rmyXO45eeQ4WZWgYg94pLUolV159oPusnHuS\\\";s:26:\\\"\\0App\\\\Entity\\\\Users\\0lastname\\\";s:4:\\\"test\\\";s:27:\\\"\\0App\\\\Entity\\\\Users\\0firstname\\\";s:4:\\\"test\\\";s:25:\\\"\\0App\\\\Entity\\\\Users\\0address\\\";s:5:\\\"Tunis\\\";s:25:\\\"\\0App\\\\Entity\\\\Users\\0zipcode\\\";s:4:\\\"2073\\\";s:22:\\\"\\0App\\\\Entity\\\\Users\\0city\\\";s:5:\\\"Tunis\\\";s:29:\\\"\\0App\\\\Entity\\\\Users\\0is_verified\\\";b:0;s:28:\\\"\\0App\\\\Entity\\\\Users\\0created_at\\\";O:17:\\\"DateTimeImmutable\\\":3:{s:4:\\\"date\\\";s:26:\\\"2022-12-29 10:27:52.725515\\\";s:13:\\\"timezone_type\\\";i:3;s:8:\\\"timezone\\\";s:13:\\\"Europe/Berlin\\\";}s:6:\\\"orders\\\";O:43:\\\"Doctrine\\\\Common\\\\Collections\\\\ArrayCollection\\\":1:{s:53:\\\"\\0Doctrine\\\\Common\\\\Collections\\\\ArrayCollection\\0elements\\\";a:0:{}}}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:3:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:20:\\\"levyemma64@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:14:\\\"test@test.test\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:7:\\\"subject\\\";a:1:{i:0;O:48:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:7:\\\"Subject\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:55:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\0value\\\";s:39:\\\"Activation de votre compte sur TechShop\\\";}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2022-12-29 10:27:56', '2022-12-29 10:27:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -154,6 +282,24 @@ CREATE TABLE `products` (
   `slug` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `products`
+--
+
+INSERT INTO `products` (`id`, `relation_id`, `name`, `description`, `price`, `stock`, `created_at`, `slug`) VALUES
+(11, 52, 'Quae.', 'Tempora inventore in repudiandae qui. Enim ipsam alias quasi odio veniam velit. Cupiditate totam mollitia veniam velit hic. Et aut in doloribus.', 2513, 0, '2022-12-27 17:43:11', 'quae'),
+(12, 58, 'Aut.', 'Voluptatem et esse quis repellat. Officiis id distinctio quia sint perspiciatis consequatur praesentium. In dicta reprehenderit qui.', 5575, 3, '2022-12-27 17:43:11', 'aut'),
+(13, 59, 'Quo eum.', 'Deleniti architecto ipsum inventore accusamus fugit distinctio. Qui blanditiis dolor soluta asperiores at maxime. Sapiente fugit odit molestiae praesentium amet quae voluptatem sapiente.', 1244, 18, '2022-12-27 17:43:11', 'quo-eum'),
+(14, 59, 'Aut error.', 'Sunt id non provident iste numquam voluptas. Aut consequatur ab qui. Sequi totam est odio assumenda quaerat tempore tempore. Provident dolor mollitia similique ut amet sunt.', 9523, 17, '2022-12-27 17:43:11', 'aut-error'),
+(15, 53, 'In non.', 'Nostrum praesentium in a aut. Debitis quisquam quia enim. Sed est sint reiciendis adipisci earum ea neque. Perspiciatis ratione sit aliquid perspiciatis aut. Voluptas et veritatis et est autem.', 7624, 6, '2022-12-27 17:43:11', 'in-non'),
+(16, 58, 'Impedit.', 'Consequatur et excepturi ut ut quos cupiditate distinctio. Ipsa cum enim optio et labore omnis quo. Eaque est repellendus eum. Rerum libero aut eos quia tenetur tempore et.', 2228, 9, '2022-12-27 17:43:11', 'impedit'),
+(17, 53, 'Ecran Logitec.', 'Quod et ea voluptatem earum libero. Qui in animi est dolor aperiam optio dolores. Minima rerum quam recusandae. Ipsa necessitatibus consequatur asperiores autem qui.', 6222, 12, '2022-12-27 17:43:11', 'officiis'),
+(18, 57, 'Nihil.', 'Similique facere repellat earum. Incidunt enim et deleniti dolores qui. A illo necessitatibus et soluta non quia quaerat.', 7990, 10, '2022-12-27 17:43:11', 'nihil'),
+(19, 58, 'Sint et.', 'Eos dolorem sit magnam voluptates. Non qui odio voluptas modi. Nostrum ut ad rerum vel distinctio inventore. Accusamus vel mollitia possimus voluptas.', 7206, 24, '2022-12-27 17:43:11', 'sint-et'),
+(20, 57, 'Sed.', 'Perspiciatis vel voluptatem nulla id necessitatibus. Sint et ex magnam non hic. Molestias laudantium quia et maiores qui suscipit nihil. Dolor enim laudantium soluta.', 5778, 0, '2022-12-27 17:43:11', 'sed'),
+(21, 56, 'xbox one', 'Console Xbox', 50000, 5, '2022-12-31 01:50:25', 'xbox-one'),
+(22, 54, 'MSI X4F', 'Ecran MSI X4F de dernière génération\r\nFréquence:  75Hz.\r\nTemps de rafraichissement: 45s.', 50000, 10, '2022-12-31 22:15:35', 'MSI-X4F');
+
 -- --------------------------------------------------------
 
 --
@@ -170,16 +316,26 @@ CREATE TABLE `users` (
   `address` varchar(255) NOT NULL,
   `zipcode` varchar(5) NOT NULL,
   `city` varchar(150) NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `is_verified` tinyint(1) NOT NULL,
+  `reset_token` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `roles`, `password`, `lastname`, `firstname`, `address`, `zipcode`, `city`, `created_at`) VALUES
-(1, 'levyren38@gmail.com', '[]', '$2y$13$z9Jg0Qcf15JgCTXfFxWLPegARJ5h0PM8sIW.EEUZp5Xgac6lmOk6O', 'Emmanuel', 'Levy', 'Tunis', '2073', 'Tunis', '2022-12-25 00:00:00'),
-(2, 'moussab@gmail.com', '[]', '$2y$13$rPrRnpIigNWjc/Kf0JM2.eK9luQ6LBM6g2V9JH7GgwQKgN/ySLUmy', 'Moussab', 'Ahmat', 'Tunis', '2073', 'Tunis', '2022-12-26 23:07:17');
+INSERT INTO `users` (`id`, `email`, `roles`, `password`, `lastname`, `firstname`, `address`, `zipcode`, `city`, `created_at`, `is_verified`, `reset_token`) VALUES
+(16, 'admin@demo.fr', '[\"ROLE_ADMIN\"]', '$2y$13$4ddrUZsHyUONm32lIDf/pOiujkfy9gwqCDHuHVnD5jaRo7mNl5VIm', 'Emmanuel', 'Levy', '10 Rue du Gabon', '2073', 'Tunis', '2022-12-27 17:43:11', 1, ''),
+(17, 'francoise.lefevre@fabre.com', '[\"ROLE_PRODUCT_ADMIN\"]', '$2y$13$MFXZlIYvoQSmWaioGSGjPeI1gS9dZZvyEB8PdJrmW2b7P4XOGpw2y', 'Bonnin', 'Jacques', '479, rue Aimé Allard', '99902', 'Bigotnec', '2022-12-27 17:43:11', 1, ''),
+(18, 'hortense.tanguy@live.com', '[]', '$2y$13$rYBqW0vBFvuvk6LtFwT2pOsWyY4pzgrtlBWoArpY1LZs8tOdhZ5he', 'Picard', 'Catherine', '846, rue de Alves', '55 52', 'Hubert', '2022-12-27 17:43:12', 0, ''),
+(19, 'pvincent@hotmail.fr', '[]', '$2y$13$Pv/Sd0zomH1YylTW1NeU5.eDEAYhiIt/zPt7iGT6OrzAj9Qikd5jS', 'Thierry', 'Charlotte', '413, boulevard Robert Prevost', '86 78', 'Maurice', '2022-12-27 17:43:12', 0, 'tuzSfsqLuUAK2jRlXiiPjSwdZw-lQBJmoG5Ty3TvQiE'),
+(20, 'laurence.thibault@yahoo.fr', '[]', '$2y$13$G/sxbHD81GbBkHKtFs/YqOghQbGphZSqTkyIyM4jNavhI20KRwfge', 'Hoareau', 'Emmanuel', '5, impasse de Weiss', '13114', 'Lelievre', '2022-12-27 17:43:12', 0, ''),
+(21, 'legendre.diane@renault.com', '[]', '$2y$13$iC561Z/7vGkJ/z0Qhv4xgucaLPXvQyc8J8iO53HwVOv2ngkflGBNe', 'Meyer', 'Roland', '427, boulevard Mathilde Paris', '56223', 'Maillard-la-Forêt', '2022-12-27 17:43:13', 0, ''),
+(22, 'levyren38@gmail.com', '[]', '$2y$13$oiljuqESdDM4BJk.HDgqKekzQy3SQ4Pfen2lQ2dG1Ec7Ji4zf673W', 'Emmanuel', 'Levy', 'Tunis', '2073', 'Tunis', '2022-12-29 09:44:08', 0, ''),
+(31, 'test@test.test', '[]', '$2y$13$KChvPQlBD0rfRb2c55avAeW5.qu13XjeJGs7KCfQsBYha4dAT7aJK', 'test', 'test', 'Tunis', '2073', 'Tunis', '2022-12-29 11:41:16', 1, ''),
+(32, 'test3@test.test', '[]', '$2y$13$QMHi.DI3dfNf67uF4dKwK.sNH0zy7MXMZpp/LN8ha2g0tWo80Znwi', 'test', 'test', 'Tunis', '2073', 'Tunis', '2022-12-29 12:07:50', 1, ''),
+(33, 'levy@ema.net', '[]', '$2y$13$ClKOMw06Cv/bqbyE7cB5Negwg4FFN1Q5Ia6XlljIT5tUAsn4LQrUm', 'levy', 'emma', 'Tunis', '2073', 'Tunis', '2022-12-29 12:53:02', 1, '');
 
 --
 -- Index pour les tables déchargées
@@ -267,7 +423,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT pour la table `coupons`
@@ -285,13 +441,13 @@ ALTER TABLE `coupons_types`
 -- AUTO_INCREMENT pour la table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT pour la table `messenger_messages`
 --
 ALTER TABLE `messenger_messages`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `orders`
@@ -303,13 +459,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT pour la table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Contraintes pour les tables déchargées
@@ -319,7 +475,7 @@ ALTER TABLE `users`
 -- Contraintes pour la table `categories`
 --
 ALTER TABLE `categories`
-  ADD CONSTRAINT `FK_3AF34668727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`);
+  ADD CONSTRAINT `FK_3AF34668727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `coupons`
