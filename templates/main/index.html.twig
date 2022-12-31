@@ -6,13 +6,13 @@
     <main class="container">
         <section class="row">
             <div class="col-12">
-                <h1>TechShop</h1>
+                <h1 class="h1">TechShop</h1>
                 <p>Bienvenu dans notre boutique</p>
             </div>
 
             {% for category in categories %}
                 {% if category.parent == null %}
-                    <div class="class col-12">
+                    <div class="class col-12 border border-light">
                         <h2>{{ category.name }}</h2>
                     </div>
                 {% else%}
@@ -30,5 +30,30 @@
             {% endfor %}
         </section>
     </main>
+
+    <style>
+       .class{
+            border-radius: 20px 20px;
+           text-align: center;
+           margin-bottom: 10px;
+           margin-top: 15px;
+           background-color: #86dcee;
+           text-transform: capitalize;
+
+       }
+       .card{
+           background-color: #d5ddea;
+           border-radius: 20px 20px;
+
+
+       }
+       .card-title{
+           text-transform: capitalize;
+       }
+       .card-body{
+           border-radius: 20px 20px;
+            background-color: #d5ddea;
+       }
+    </style>
 
 {% endblock %}

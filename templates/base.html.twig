@@ -20,6 +20,7 @@
 
 </head>
 <body>
+
 {% include "_partials/_nav.html.twig" %}
 {% if app.user and app.user.isVerified == false %}
     <div class="alert alert-warning alert-dismissible" role="alert">
@@ -38,5 +39,14 @@
 {% include "_partials/footer.html.twig" %}
 
 
+
+
 </body>
+<style>
+    body{
+        background: -webkit-linear-gradient(left, #b7e5da, #e0e0b5);
+        background: linear-gradient(to right, #bdbdad, #bfdbde);
+    }
+</style>
+
 </html>
